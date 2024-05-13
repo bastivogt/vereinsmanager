@@ -7,18 +7,10 @@
 
 {% block header %}
     <div class="mb-5">
-        <h1 class="display-1">{{ member.get_fullname }}</h1>
+        <h1 class="display-1">#{{ member.id }} - {{ member.get_fullname }}</h1>
     </div>
 {% endblock %}
 
-<div class="card">
-    <div class="card-header">
-
-    </div>
-    <div class="card-body">
-
-    </div>
-</div>
 
 
 {% block main %}

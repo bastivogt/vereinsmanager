@@ -6,15 +6,17 @@
 
 
 {% block header %}
-    <div class="mb-5">
+    <div class="mb-3">
         <h1 class="display-1">{{ title }}</h1>
+    </div>
+    <div class="mb-5">
+        <a class="btn btn-primary btn-lg" href="{% url "members-member-new" %}">Mitglied hinzufügen</a>
     </div>
 {% endblock %}
 
 
 {% block main %}
-{% include "members/partials/_members_table.html" %}
-        
+    {% include "members/partials/_members_table.html" %}      
 {% endblock %}
 
 {% block sidebar %}

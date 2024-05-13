@@ -1,13 +1,9 @@
 <form action="">
     <div class="mb-3">
-        <label for="publish-footos">Fotos veröffentlichen</label>
-        <input class="form-check" type="checkbox" name="publish_fotos" id="publish-footos" {% if filter_defaults.publish_fotos.value %}checked{% endif %}>
-    </div>
-    <div class="mb-3">
-        <label for="genders">Gechlecht</label>
+        <label for="genders">Gechlecht: </label>
         <select class="form-select" name="gender" id="genders">
 
-            <option value="{{ filter_defaults.gender.value }}">{{ filter_defaults.gender.title }}</option>
+            <option value="all">Alle</option>
             {% for gender in genders %}
                 <option value="{{ gender.id }}">{{ gender.name }}</option>
             {% endfor %}
@@ -15,10 +11,10 @@
         </select>
     </div>
     <div class="mb-3">
-        <label for="modules">Modul</label>
+        <label for="modules">Modul: </label>
         <select class="form-select" name="module" id="modules">
 
-            <option value="{{ filter_defaults.module.value }}">{{ filter_defaults.module.title }}</option>
+            <option value="all">Alle</option>
             {% for module in modules %}
                 <option value="{{ module.id }}">{{ module.name }}</option>
             {% endfor %}
@@ -26,15 +22,99 @@
         </select>
     </div>
     <div class="mb-3">
-        <label for="positions">Position</label>
+        <label for="positions">Position: </label>
         <select class="form-select" name="position" id="positions">
 
-            <option value="{{ filter_defaults.position.value }}">{{ filter_defaults.position.title }}</option>
+            <option value="all">Alle</option>
             {% for position in positions %}
                 <option value="{{ position.id }}">{{ position.name }}</option>
             {% endfor %}
 
         </select>
     </div>
+    <div class="mb-3">
+        <input class="form-check-input" type="checkbox" name="publish_fotos" id="publish-footos" {% if filter_defaults.publish_fotos.value %}checked{% endif %}>
+        <label for="publish-footos">Fotos veröffentlichen</label>
+    </div>
+    <hr>
+    <div class="mb-3">
+        <label for="orders">Sortieren nach: </label>
+        <select class="form-select" name="order" id="orders" name="order">
+            <option value="default">Standard</option>
+            <option value="firstname">Vorname</option>
+            <option value="lastname">Nachname</option>
+            <option value="birthday">Geburtstag</option>
+            <option value="id">ID</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="order_dirs">Richtung: </label>
+        <select class="form-select" name="order_dir" id="order_dirs" name="order_dirs">
+            <option value="default">Standard</option>
+            <option value="up">Aufsteigend</option>
+            <option value="down">Absteigend</option>
+        </select>
+    </div>
     <button class="btn btn-primary">Filter</button>
 </form>
+
+{% comment %}
+    <form action="">
+        <div class="mb-3">
+            <label for="publish-footos">Fotos veröffentlichen</label>
+            <input class="form-check" type="checkbox" name="publish_fotos" id="publish-footos" {% if filter_defaults.publish_fotos.value %}checked{% endif %}>
+        </div>
+        <div class="mb-3">
+            <label for="genders">Gechlecht</label>
+            <select class="form-select" name="gender" id="genders">
+    
+                <option value="{{ filter_defaults.gender.value }}">{{ filter_defaults.gender.title }}</option>
+                {% for gender in genders %}
+                    <option value="{{ gender.id }}">{{ gender.name }}</option>
+                {% endfor %}
+    
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="modules">Modul</label>
+            <select class="form-select" name="module" id="modules">
+    
+                <option value="{{ filter_defaults.module.value }}">{{ filter_defaults.module.title }}</option>
+                {% for module in modules %}
+                    <option value="{{ module.id }}">{{ module.name }}</option>
+                {% endfor %}
+    
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="positions">Position</label>
+            <select class="form-select" name="position" id="positions">
+    
+                <option value="{{ filter_defaults.position.value }}">{{ filter_defaults.position.title }}</option>
+                {% for position in positions %}
+                    <option value="{{ position.id }}">{{ position.name }}</option>
+                {% endfor %}
+    
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="orders">Sortieren nach</label>
+            <select class="form-select" name="order" id="orders" name="order">
+                <option value="{{ filter_defaults.order.value }}">{{ filter_defaults.order.title }}</option>
+                <option value="firstname">Vorname</option>
+                <option value="lastname">Nachname</option>
+                <option value="birthday">Geburtstag</option>
+                <option value="id">ID</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="order_dirs">Richtung</label>
+            <select class="form-select" name="order_dir" id="order_dirs" name="order_dirs">
+                <option value="{{ filter_defaults.order_dir.value }}">{{ filter_defaults.order_dir.title }}</option>
+                <option value="up">Aufsteigend</option>
+                <option value="down">Absteigend</option>
+            </select>
+        </div>
+        <button class="btn btn-primary">Filter</button>
+    </form>
+{% endcomment %} 

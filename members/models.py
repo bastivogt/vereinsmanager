@@ -38,7 +38,7 @@ class Member(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=100)
     entry_date = models.DateField()
-    account_details = models.TextField()
+    account_details = models.TextField(blank=True)
 
     legal_representative = models.TextField(null=True, blank=True)
 
