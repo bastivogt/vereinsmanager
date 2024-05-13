@@ -1,0 +1,40 @@
+<form action="">
+    <div class="mb-3">
+        <label for="publish-footos">Fotos veröffentlichen</label>
+        <input class="form-check" type="checkbox" name="publish_fotos" id="publish-footos" {% if filter_defaults.publish_fotos.value %}checked{% endif %}>
+    </div>
+    <div class="mb-3">
+        <label for="genders">Gechlecht</label>
+        <select class="form-select" name="gender" id="genders">
+
+            <option value="{{ filter_defaults.gender.value }}">{{ filter_defaults.gender.title }}</option>
+            {% for gender in genders %}
+                <option value="{{ gender.id }}">{{ gender.name }}</option>
+            {% endfor %}
+
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="modules">Modul</label>
+        <select class="form-select" name="module" id="modules">
+
+            <option value="{{ filter_defaults.module.value }}">{{ filter_defaults.module.title }}</option>
+            {% for module in modules %}
+                <option value="{{ module.id }}">{{ module.name }}</option>
+            {% endfor %}
+
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="positions">Position</label>
+        <select class="form-select" name="position" id="positions">
+
+            <option value="{{ filter_defaults.position.value }}">{{ filter_defaults.position.title }}</option>
+            {% for position in positions %}
+                <option value="{{ position.id }}">{{ position.name }}</option>
+            {% endfor %}
+
+        </select>
+    </div>
+    <button class="btn btn-primary">Filter</button>
+</form>

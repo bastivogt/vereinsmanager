@@ -1,0 +1,164 @@
+{% extends "base_one_col.html" %}
+
+{% block title %}
+    {{ member.get_fullname }}
+{% endblock %}
+
+
+{% block header %}
+    <div class="mb-5">
+        <h1 class="display-1">{{ member.get_fullname }}</h1>
+    </div>
+{% endblock %}
+
+<div class="card">
+    <div class="card-header">
+
+    </div>
+    <div class="card-body">
+
+    </div>
+</div>
+
+
+{% block main %}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <h5>Person</h5>
+    </div>
+    <div class="card-body">
+        <div>
+            <strong>Vorname: </strong>{{ member.firstname }}
+        </div>
+        <div>
+            <strong>Nachname: </strong>{{ member.lastname }}
+        </div>
+        {% if member.gender %}
+        <div>
+            <strong>Geschlecht: </strong>{{ member.gender.name }}
+        </div>
+        {% endif %}
+        <div>
+            <strong>Geburtstag: </strong>{{ member.birthday|date:"d.m.Y" }}
+        </div>
+        <div>
+            <strong>Alter: </strong>{{ member.get_age }}
+        </div>
+    </div>
+</div>
+
+{% if member.legal_representative %}
+<div class="card mb-3">
+    <div class="card-header">
+        <h5>Gesetzlicher Vertrete</h5>
+    </div>
+    <div class="card-body">
+        {{ member.legal_representative }}
+    </div>
+</div>
+{% endif %}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <h5>Kontakt</h5>
+    </div>
+    <div class="card-body">
+        <div class="mb-2">
+            <strong>Adresse: </strong>
+            <div>
+                {{ member.adress|linebreaksbr }}
+            </div>
+        </div>
+        <div>
+            <strong>Telefon: </strong>
+            <a href="tel:{{ member.phone }}">{{ member.phone }}</a>
+        </div>
+        <div>
+            <strong>E-Mail: </strong>
+            <a href="mailto:{{ member.email }}">{{ member.email }}</a>
+        </div>
+    </div>
+</div>
+
+{% if member.account_details %}
+<div class="card mb-3">
+    <div class="card-header">
+        <h5>Bank</h5>
+    </div>
+    <div class="card-body">
+        <div>
+            {{ member.account_details|linebreaksbr }}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if member.chronic_diseases or member.permanent_medication %}
+<div class="card mb-3">
+    <div class="card-header">
+        <h5>Gesundheit</h5>
+    </div>
+    <div class="card-body">
+        <div class="mb-2">
+            <strong>Chronische Kranheiten: </strong>
+            <div>
+                {{ member.chronic_diseases|linebreaksbr }}
+            </div>
+        </div>
+        <div class="mb-2">
+            <strong>Dauerhafte Medikamente: </strong>
+            <div>
+                {{ member.permanent_medication|linebreaksbr }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+<div class="card mb-3">
+    <div class="card-header">
+        <h5>Verein</h5>
+    </div>
+    <div class="card-body">
+        <div>
+            <strong>Mitglied seit: </strong>
+            {{ member.entry_date|date:"d.m.Y" }}
+        </div>
+        {% if member.get_modules_str != "" %}
+        <div>
+            <strong>Module: </strong>
+            {{ member.get_modules_str}}
+        </div>
+        {% endif %}
+        {% if member.get_positions_str != "" %}
+        <div>
+            <strong>Positionen: </strong>
+            {{ member.get_positions_str}}
+        </div>
+        {% endif %}
+        <div>
+            <strong>Publizieren von Fotos: </strong>
+            {% if member.publish_fotos %}
+                ja
+            {% else %}
+                nein
+            {% endif %}
+        </div>
+        <div>
+            <strong>Aktiv: </strong>
+            {% if member.is_active %}
+                ja
+            {% else %}
+                nein
+            {% endif %}
+        </div>
+    </div>
+</div>
+<hr>
+<button class="btn btn-primary back-link">Zurück</button>
+
+        
+{% endblock %}
+

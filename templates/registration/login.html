@@ -1,0 +1,24 @@
+{% extends "base_one_col.html" %}
+
+
+{% block title %}
+    Login
+{% endblock %}
+
+
+{% block main %}
+        {% if user.is_authenticated %}
+            <h1 class="display-1">Hallo, {{ user.get_username }}!</h1>
+            <form action="{% url "logout" %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-primary">Logout</button>
+            </form>
+        {% else %}
+            <h1 class="display-1">LOGIN</h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <button class="btn btn-primary">Login</button>
+            </form>
+        {% endif %}
+{% endblock %}
