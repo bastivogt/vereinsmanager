@@ -266,6 +266,10 @@ def member_new(request):
     
     if request.method == "POST":
         form = forms.MemberForm(request.POST)
+        if form.is_valid():
+            form.save()
+            url = reverse("members-index")
+            return HttpResponseRedirect(url)
     else:
         form = forms.MemberForm()
 
@@ -288,6 +292,8 @@ def member_update(request, id):
         form = forms.MemberForm(request.POST, instance=member)
         if form.is_valid():
             form.save()
+            url = reverse("members-member-detail", args=[id])
+            return HttpResponseRedirect(url)
     else:
         form = forms.MemberForm(instance=member)
 
@@ -298,6 +304,26 @@ def member_update(request, id):
         "form": form, 
         "id": id
     })
+
+
+def member_delete(request, id):
+    if not request.user.is_authenticated:
+        return helpers.not_auth_redirect()
+    
+    member = get_object_or_404(models.Member, id=id)
+    
+    if request.method == "POST":
+        print("DELETE")
+        member.delete()
+        url = reverse("members-index")
+        return HttpResponseRedirect(url)
+    
+    return render(request, "members/member_delete.html", {
+        "member": member
+    })
+        
+
+    
 
 
 

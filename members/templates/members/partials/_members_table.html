@@ -26,6 +26,7 @@
                     <td class="d-flex justify-content-start">
                         <a class="btn btn-primary m-1 d-block" href="{% url "members-member-detail" id=member.id %}">Detail</a>
                         <a class="btn btn-primary m-1 d-block" href="{% url "members-member-update" id=member.id %}">Ändern</a>
+                        <a class="btn btn-danger m-1 d-block" href="{% url "members-member-delete" id=member.id %}">Löschen</a>
                     </td>
                 </tr>
             {% endfor %}

@@ -149,7 +149,14 @@
     </div>
 </div>
 <hr>
-<button class="btn btn-primary back-link">Zurück</button>
+<div class="d-flex justify-content-start">
+    <a class="btn btn-primary d-block m-1" href="{% url "members-index" %}">Zurück zur Übersicht</a>
+
+    <a class="btn btn-primary d-block m-1" href="{% url "members-member-update" id=member.id %}">Ändern</a>
+
+    <a class="btn btn-danger d-block m-1" href="{% url "members-member-delete" id=member.id %}">Löschen</a>
+</div>
+
 
         
 {% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base_one_col.html" %}
+
+{% block title %}
+    {{ member.get_fullname }}
+{% endblock %}
+
+
+{% block header %}
+    <div class="mb-5">
+        <h1 class="display-1">#{{ member.id }} - {{ member.get_fullname }}</h1>
+    </div>
+{% endblock %}
+
+
+
+
+{% block main %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="card">
+        <div class="card-header">
+            <h5>Mitglied Löschen</h5>
+        </div>
+        <div class="card-body">
+            <div>
+                Möchtest du das Mitglied:
+            </div>
+            <div>
+                <strong>
+                    #{{ member.id }} - {{ member.get_fullname }} ({{ member.get_age }})
+                </strong>
+            </div>
+            <div>
+                wirklich löschen?
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-danger">Löschen</button>
+        </div>
+    </div>
+</form>
+<hr>
+<button class="btn btn-primary back-link">Zurück</button>
+{% endblock %}
+
+
+
