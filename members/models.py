@@ -35,8 +35,8 @@ class Member(models.Model):
     birthday = models.DateField()
     gender = models.ForeignKey(Gender, null=True, blank=True, on_delete=models.SET_NULL)
     adress = models.TextField()
-    email = models.EmailField()
-    phone = models.CharField(max_length=100)
+    email = models.EmailField(blank=True)
+    phone = models.CharField(max_length=100, blank=True)
     entry_date = models.DateField()
     account_details = models.TextField(blank=True)
 

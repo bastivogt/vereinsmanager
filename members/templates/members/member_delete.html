@@ -17,11 +17,11 @@
 {% block main %}
 <form action="" method="POST">
     {% csrf_token %}
-    <div class="card">
-        <div class="card-header">
+    <div class="card border-danger">
+        <div class="card-header border-danger text-white bg-danger">
             <h5>Mitglied Löschen</h5>
         </div>
-        <div class="card-body">
+        <div class="card-body text-danger">
             <div>
                 Möchtest du das Mitglied:
             </div>
@@ -34,7 +34,7 @@
                 wirklich löschen?
             </div>
         </div>
-        <div class="card-footer">
+        <div class="card-footer border-danger bg-transparent">
             <button class="btn btn-danger">Löschen</button>
         </div>
     </div>

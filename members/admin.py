@@ -2,6 +2,7 @@ from django.contrib import admin
 
 
 from . import models
+from . import forms
 
 # Register your models here.
 
@@ -9,6 +10,7 @@ class MemberAdmin(admin.ModelAdmin):
     list_display = ["firstname", "lastname", "get_age", "gender", "get_modules_str", "get_positions_str"]
     list_filter = ["modules", "positions", "gender", "is_active", "publish_fotos"]
     search_fields = ["firstname", "lastname"]
+    #form = forms.MemberForm
     fieldsets = [
         ("Person", {
             "fields": ("firstname", "lastname", "birthday", "gender", "adress", "email", "phone")
