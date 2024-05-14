@@ -276,7 +276,7 @@ def member_new(request):
 
     
     return render(request, "members/member_new.html", {
-        "title": "Mitglied Neu",
+        "title": "Mitglied erstellen",
         "form": form
     })
 

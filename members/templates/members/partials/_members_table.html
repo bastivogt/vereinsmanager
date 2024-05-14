@@ -23,10 +23,12 @@
                     <td class="d-none d-md-table-cell">{{ member.gender }}</td>
                     <td class="d-none d-md-table-cell">{{ member.get_modules_str }}</td>
                     <td class="d-none d-md-table-cell">{{ member.get_positions_str }}</td>
-                    <td class="d-flex justify-content-start">
-                        <a class="btn btn-primary m-1 d-block" href="{% url "members-member-detail" id=member.id %}">Detail</a>
-                        <a class="btn btn-primary m-1 d-block" href="{% url "members-member-update" id=member.id %}">Ändern</a>
-                        <a class="btn btn-danger m-1 d-block" href="{% url "members-member-delete" id=member.id %}">Löschen</a>
+                    <td>
+                        <div class="d-flex justify-content-start">
+                            <a class="btn btn-primary m-1 d-block" href="{% url "members-member-detail" id=member.id %}">Detail</a>
+                            <a class="btn btn-primary m-1 d-block" href="{% url "members-member-update" id=member.id %}">Ändern</a>
+                            <a class="btn btn-danger m-1 d-block" href="{% url "members-member-delete" id=member.id %}">Löschen</a>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}
