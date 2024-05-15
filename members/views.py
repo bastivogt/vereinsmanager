@@ -240,6 +240,8 @@ def index(request):
         elif order == "id":
             members = members.order_by(f"{order_dir_str}{order}")
 
+
+
     if show_adult_with_child_rate != None:
 
         members = members.filter(rate__name="Kind")
