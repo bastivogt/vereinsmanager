@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect
 
 from django.db.models import Q
 
+from datetime import datetime
+
 from . import helpers
 from . import models
 from . import forms
@@ -171,6 +173,10 @@ def index(request):
     order_dir_str = ""
 
     search = request.GET.get("search")
+
+    show_adult_with_child_rate = request.GET.get("show_adult_with_child_rate")
+
+    print(f"sawcr: {show_adult_with_child_rate}")
  
     members = models.Member.objects.filter(is_active=True).order_by("-id")
     genders = models.Gender.objects.all()
@@ -233,6 +239,13 @@ def index(request):
             members = members.order_by(f"{order_dir_str}{order}")
         elif order == "id":
             members = members.order_by(f"{order_dir_str}{order}")
+
+    if show_adult_with_child_rate != None:
+
+        members = members.filter(rate__name="Kind")
+        members = [member for member in members if member.get_age() > 18]
+
+
 
     return render(request, "members/index.html", {
         "title": "Mitglieder Liste", 

@@ -29,7 +29,9 @@ class MemberForm(forms.ModelForm):
             "permanent_medication": "Dauerhafte Medikamente",
             "publish_fotos": "Fotos veröffentlichen",
             "is_active": "Aktiv",
-            "legal_representative": "Gesetzlicher Vormund"
+            "legal_representative": "Gesetzlicher Vormund", 
+            "rate": "Tarif",
+            "licenses": "Lizenzen"
 
 
         }
@@ -46,6 +48,8 @@ class MemberForm(forms.ModelForm):
             "legal_representative": forms.Textarea(attrs={"class": "form-control"}),
             "positions": forms.SelectMultiple(attrs={"class": "form-select"}),
             "modules": forms.SelectMultiple(attrs={"class": "form-select"}),
+            "licenses": forms.SelectMultiple(attrs={"class": "form-select"}),
+            "rate": forms.Select(attrs={"class": "form-select"}),
             "chronic_diseases": forms.Textarea(attrs={"class": "form-control"}),
             "permanent_medication": forms.Textarea(attrs={"class": "form-control"}),
             "publish_fotos": forms.CheckboxInput(attrs={"class": "form-check-input"}),

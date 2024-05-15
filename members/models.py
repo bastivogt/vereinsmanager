@@ -8,6 +8,7 @@ import math
 # Create your models here.
 
 
+# Module
 class Module(models.Model):
     name = models.CharField(max_length=255)
 
@@ -15,17 +16,36 @@ class Module(models.Model):
         return self.name
 
 
+
+# Position
 class Position(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
-    
+
+# Gender
 class Gender(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
+    
+
+# Licennse
+class License(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+    
+# Rate
+class Rate(models.Model):
+    name = models.CharField(max_length=255)
+    price = models.DecimalField(decimal_places=2, max_digits=5)
+
+    def __str__(self):
+        return f"{self.name}: {self.price}"
 
 
 
@@ -44,12 +64,22 @@ class Member(models.Model):
 
     positions = models.ManyToManyField(Position, blank=True)
     modules = models.ManyToManyField(Module, blank=True)
+    licenses = models.ManyToManyField(License, blank=True)
+    rate = models.ForeignKey(Rate, null=True, blank=True, on_delete=models.SET_NULL)
 
     chronic_diseases = models.TextField(null=True, blank=True)
     permanent_medication = models.TextField(null=True, blank=True)
 
     publish_fotos = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+
+
+
+    #adult_with_child_rate = models.BooleanField(default=False)
+
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.adult_with_child_rate = self.get_adult_with_child_rate()
 
 
 
@@ -81,6 +111,19 @@ class Member(models.Model):
         positions = self.positions.all().order_by("name")
         positions_list = [position.name for position in positions]
         return ", ".join(positions_list)
+    
+    @admin.display(description="Licenses")
+    def get_licenses_str(self):
+        licenses = self.licenses.all().order_by("name")
+        licenses_list = [license.name for license in licenses]
+        return ", ".join(licenses_list)
+    
+
+
+    def get_adult_with_child_rate(self):
+        if self.rate.name == "Kind" and self.get_age() >= 18:
+            return True
+        return False
     
 
     def __str__(self):
