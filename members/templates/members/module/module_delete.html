@@ -1,0 +1,47 @@
+{% extends "base_one_col.html" %}
+
+{% block title %}
+    {{ member.get_fullname }}
+{% endblock %}
+
+
+{% block header %}
+    <div class="mb-5">
+        <h1 class="display-1">#{{ module.id }} - {{ module.name }}</h1>
+    </div>
+{% endblock %}
+
+
+
+
+{% block main %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="card border-danger">
+        <div class="card-header border-danger text-white bg-danger">
+            <h5>Modul Löschen</h5>
+        </div>
+        <div class="card-body text-danger">
+            <div>
+                Möchtest du das Modul:
+            </div>
+            <div>
+                <strong>
+                    #{{ module.id }} - {{ module.name }}
+                </strong>
+            </div>
+            <div>
+                wirklich löschen?
+            </div>
+        </div>
+        <div class="card-footer border-danger bg-transparent">
+            <button class="btn btn-danger">Löschen</button>
+        </div>
+    </div>
+</form>
+<hr>
+<button class="btn btn-primary back-link">Zurück</button>
+{% endblock %}
+
+
+

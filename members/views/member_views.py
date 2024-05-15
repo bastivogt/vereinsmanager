@@ -5,9 +5,9 @@ from django.http import HttpResponseRedirect
 from django.db.models import Q
 
 
-from . import helpers
-from . import models
-from . import forms
+from members import helpers
+from members import models
+from members import forms
 
 
 
@@ -106,7 +106,7 @@ def index(request):
 
 
 
-    return render(request, "members/index.html", {
+    return render(request, "members/member/member_index.html", {
         "title": "Mitglieder Liste", 
         "members": members, 
         "genders": genders,
@@ -124,7 +124,7 @@ def member_detail(request, id):
         return helpers.not_auth_redirect()
     
     member = get_object_or_404(models.Member, id=id)
-    return render(request, "members/member_detail.html", {
+    return render(request, "members/member/member_detail.html", {
         "title": "Mitglied Detail",
         "id": id,
         "member": member
@@ -147,7 +147,7 @@ def member_new(request):
 
 
     
-    return render(request, "members/member_new.html", {
+    return render(request, "members/member/member_new.html", {
         "title": "Mitglied erstellen",
         "form": form
     })
@@ -171,13 +171,14 @@ def member_update(request, id):
 
 
     
-    return render(request, "members/member_update.html", {
+    return render(request, "members/member/member_update.html", {
         "title": member.get_fullname(),
         "form": form, 
         "id": id
     })
 
 
+# delete
 def member_delete(request, id):
     if not request.user.is_authenticated:
         return helpers.not_auth_redirect()
@@ -190,6 +191,6 @@ def member_delete(request, id):
         url = reverse("members-index")
         return HttpResponseRedirect(url)
     
-    return render(request, "members/member_delete.html", {
+    return render(request, "members/member/member_delete.html", {
         "member": member
     })

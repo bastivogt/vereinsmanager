@@ -10,7 +10,7 @@ import math
 
 # Module
 class Module(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.name
@@ -19,14 +19,14 @@ class Module(models.Model):
 
 # Position
 class Position(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.name
 
 # Gender
 class Gender(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
@@ -34,14 +34,14 @@ class Gender(models.Model):
 
 # Licennse
 class License(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.name
     
 # Rate
 class Rate(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     price = models.DecimalField(decimal_places=2, max_digits=5)
 
     def __str__(self):

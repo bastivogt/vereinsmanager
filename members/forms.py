@@ -36,7 +36,7 @@ class MemberForm(forms.ModelForm):
 
         }
         widgets = {
-            "firstname": forms.TextInput(attrs={"class": "form-control", "required": "false"}),
+            "firstname": forms.TextInput(attrs={"class": "form-control"}),
             "lastname": forms.TextInput(attrs={"class": "form-control"}),
             "birthday": forms.DateInput(format=("%Y-%m-%d"), attrs={"class": "form-control", "placeholder": "Wähle ein Datum", "type":"date"}),
             "gender": forms.Select(attrs={"class": "form-select"}),
@@ -54,4 +54,18 @@ class MemberForm(forms.ModelForm):
             "permanent_medication": forms.Textarea(attrs={"class": "form-control"}),
             "publish_fotos": forms.CheckboxInput(attrs={"class": "form-check-input"}),
             "is_active": forms.CheckboxInput(attrs={"class": "form-check-input"})
+        }
+
+
+
+# ModuleForm
+class ModuleForm(forms.ModelForm):
+    class Meta:
+        model = models.Module
+        fields = "__all__"
+        labels = {
+            "name": "Name"
+        }
+        widgets = {
+            "name": forms.TextInput(attrs={"class": "form-control"})
         }

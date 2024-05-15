@@ -1,0 +1,44 @@
+{% extends "base_one_col.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block header %}
+    <div class="mb-5">
+        <h1 class="display-1">#{{ id }} - {{ title }}</h1>
+    </div>
+{% endblock %}
+
+
+
+
+{% block main %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="card">
+        <div class="card-header">
+            <h5>#{{ id }} - Modul erstellen</h5>
+        </div>
+        <div class="card-body">            
+            {% for field in form %}
+                <div class="mb-3"> 
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="alert alert-danger mt-1 errors" role="alert">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}   
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary">Erstellen</button>
+        </div>
+    </div>
+</form>
+<hr>
+<button class="btn btn-primary back-link">Zurück</button>
+{% endblock %}
