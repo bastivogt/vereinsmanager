@@ -12,6 +12,12 @@ from . import forms
 
 
 
+from . import views_rate
+
+
+
+
+
 # Create your views here.
 
 # members views
@@ -342,21 +348,40 @@ def member_delete(request, id):
 
 
 
-# module views
-def module_index(request):
-    if not request.user.is_authenticated:
-        return helpers.not_auth_redirect()
+# # module views
+# def module_index(request):
+#     if not request.user.is_authenticated:
+#         return helpers.not_auth_redirect()
     
-    return render(request, "members/module_index.html", {
-        "title": "module index"
-    })
+#     return render(request, "members/module_index.html", {
+#         "title": "module index"
+#     })
 
 
-# position views
-def position_index(request):
-    if not request.user.is_authenticated:
-        return helpers.not_auth_redirect()
+# # position views
+# def position_index(request):
+#     if not request.user.is_authenticated:
+#         return helpers.not_auth_redirect()
     
-    return render(request, "members/position_index.html", {
-        "title": "positions index"
-    })
+#     return render(request, "members/position_index.html", {
+#         "title": "positions index"
+#     })
+
+
+# # rate views
+# def rate_index(request):
+#     if not request.user.is_authenticated:
+#         return helpers.not_auth_redirect()
+    
+#     return render(request, "members/rate_index.html", {
+#         "title": "rate index"
+#     })
+
+# # license views
+# def license_index(request):
+#     if not request.user.is_authenticated:
+#         return helpers.not_auth_redirect()
+    
+#     return render(request, "members/license_index.html", {
+#         "title": "license index"
+#     })
