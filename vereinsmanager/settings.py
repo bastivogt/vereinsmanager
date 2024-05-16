@@ -134,3 +134,12 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "sevo-auth-login"
 
 #AUTH_USER_MODEL = "sevo_auth.CustomUser"
+
+
+# messages
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: "danger"
+
+}

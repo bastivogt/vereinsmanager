@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect
 
 from django.db.models import Q
 
+from django.contrib import messages
+
 
 from members import helpers
 from members import models
@@ -44,21 +46,21 @@ def index(request):
         try:
             members = members.filter(gender__id=int(filter_gender))
         except:
-            url = reverse("members-index")
+            url = reverse("members-member-index")
             HttpResponseRedirect(url)
         
     if filter_module != None and filter_module != "all":
         try:
             members = members.filter(modules__id=int(filter_module))
         except:
-            url = reverse("members-index")
+            url = reverse("members-member-index")
             HttpResponseRedirect(url)
 
     if filter_position != None and filter_position != "all":
         try:
             members = members.filter(positions__id=int(filter_position))
         except:
-            url = reverse("members-index")
+            url = reverse("members-member-index")
             HttpResponseRedirect(url)
 
 
@@ -66,14 +68,14 @@ def index(request):
         try:
             members = members.filter(publish_fotos=True)
         except:
-            url = reverse("members-index")
+            url = reverse("members-member-index")
             HttpResponseRedirect(url)
 
     if search != "" and search != None:
         try:
             members = members.filter(Q(firstname__icontains=search) | Q(lastname__icontains=search)).distinct()
         except:
-            url = reverse("members-index")
+            url = reverse("members-member-index")
             HttpResponseRedirect(url)
 
 
@@ -140,7 +142,8 @@ def member_new(request):
         form = forms.MemberForm(request.POST)
         if form.is_valid():
             form.save()
-            url = reverse("members-index")
+            messages.add_message(request, messages.INFO, f"Mitglied wurde erstellt!")
+            url = reverse("members-member-index")
             return HttpResponseRedirect(url)
     else:
         form = forms.MemberForm()
@@ -164,6 +167,7 @@ def member_update(request, id):
         form = forms.MemberForm(request.POST, instance=member)
         if form.is_valid():
             form.save()
+            messages. add_message(request, messages.INFO, f"Mitglied: [#{member.id} - {member.get_fullname()}] wurde geändert!")
             url = reverse("members-member-detail", args=[id])
             return HttpResponseRedirect(url)
     else:
@@ -186,9 +190,11 @@ def member_delete(request, id):
     member = get_object_or_404(models.Member, id=id)
     
     if request.method == "POST":
-        print("DELETE")
+        member_id = member.id
+        member_fullname = member.get_fullname()
         member.delete()
-        url = reverse("members-index")
+        messages.add_message(request, messages.ERROR, f"Mitglied: [#{member_id} - {member_fullname}] wurde gelöscht")
+        url = reverse("members-member-index")
         return HttpResponseRedirect(url)
     
     return render(request, "members/member/member_delete.html", {

@@ -9,7 +9,7 @@ from .views import rate_views
 
 
 urlpatterns = [
-    path("members-list/", member_views.index, name="member-index"),
+    path("members-list/", member_views.index, name="members-member-index"),
     path("member/<int:id>", member_views.member_detail, name="members-member-detail"),
     path("member/new", member_views.member_new, name="members-member-new"),
     path("member/update/<int:id>", member_views.member_update, name="members-member-update"),

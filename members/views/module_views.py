@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponseRedirect
+
+from django.contrib import messages
 from members import helpers
 
 from members import models
@@ -44,6 +46,7 @@ def module_update(request, id):
         form = forms.ModuleForm(request.POST, instance=module)
         if form.is_valid():
             form.save()
+            messages.add_message(request, messages.SUCCESS, f"Modul: [#{module.id} - {module.name}] wurde geändert!")
             url = reverse("members-module-detail", args=[id])
             return HttpResponseRedirect(url)
     else:
@@ -64,6 +67,7 @@ def module_new(request):
         form = forms.ModuleForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.add_message(request, messages.SUCCESS, f"Modul wurde erstellt!")
             url = reverse("members-module-index")
             return HttpResponseRedirect(url)
     else:
@@ -83,7 +87,12 @@ def module_delete(request, id):
     module = get_object_or_404(models.Module, id=id)
     
     if request.method == "POST":   
+        module_id = module.id
+        module_name = module.name
         module.delete()
+        
+        messages.add_message(request, messages.ERROR, f"Module: [#{module_id} - {module_name}] wurde gelöscht!")
+        
         url = reverse("members-module-index")
         return HttpResponseRedirect(url)
     

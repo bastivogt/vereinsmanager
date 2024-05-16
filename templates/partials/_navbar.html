@@ -8,7 +8,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link{% if "members-list" in request.path %} active{% endif %}"{% if "members-list" in request.path %} aria-current="page"{% endif %} href="{% url "member-index" %}">Mitglieder</a>
+                        <a class="nav-link{% if "members-list" in request.path %} active{% endif %}"{% if "members-list" in request.path %} aria-current="page"{% endif %} href="{% url "members-member-index" %}">Mitglieder</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link{% if "modules" in request.path %} active{% endif %}"{% if "modules" in request.path %} aria-current="page"{% endif %} href="{% url "members-module-index" %}">Module</a>
