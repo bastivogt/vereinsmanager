@@ -142,7 +142,7 @@ def member_new(request):
         form = forms.MemberForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.INFO, f"Mitglied wurde erstellt!")
+            messages.add_message(request, messages.SUCCESS, f"Mitglied: [#{form.instance.id} - {form.instance.get_fullname()}] wurde erstellt!")
             url = reverse("members-member-index")
             return HttpResponseRedirect(url)
     else:
@@ -167,7 +167,7 @@ def member_update(request, id):
         form = forms.MemberForm(request.POST, instance=member)
         if form.is_valid():
             form.save()
-            messages. add_message(request, messages.INFO, f"Mitglied: [#{member.id} - {member.get_fullname()}] wurde geändert!")
+            messages. add_message(request, messages.SUCCESS, f"Mitglied: [#{member.id} - {member.get_fullname()}] wurde geändert!")
             url = reverse("members-member-detail", args=[id])
             return HttpResponseRedirect(url)
     else:

@@ -67,7 +67,8 @@ def module_new(request):
         form = forms.ModuleForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.SUCCESS, f"Modul wurde erstellt!")
+            print(form.instance.id)
+            messages.add_message(request, messages.SUCCESS, f"Modul: [#{form.instance.id} - {form.instance.name}] wurde erstellt!")
             url = reverse("members-module-index")
             return HttpResponseRedirect(url)
     else:
