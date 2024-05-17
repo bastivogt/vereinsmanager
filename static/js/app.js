@@ -15,7 +15,6 @@ function doBackLink() {
 
 // Alerts auto hide
 function autoHideMessageAlert(time, alert) {
-    const myAlert = bootstrap.Alert.getInstance(".message-alert");
     setTimeout(() => {
         alert.close()
     }, time);
